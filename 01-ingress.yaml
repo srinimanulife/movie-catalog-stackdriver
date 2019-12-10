@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gateway-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /movie-catalog/*
+        backend:
+          serviceName: movie-catalog
+          servicePort: 8081          
+      - path: /movie-info/*
+        backend:
+          serviceName: movie-info
+          servicePort: 8082
+      - path: /movie-rating/*
+        backend:
+          serviceName: movie-rating
+          servicePort: 8083
